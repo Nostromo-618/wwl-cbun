@@ -1,7 +1,7 @@
 /**
- * Vue 3 bindings for @vanduo-oss/vwl-cbun/code-editor — the primary export.
+ * Vue 3 bindings for @wwl/wwl-cbun/code-editor — the primary export.
  *
- *   import { VdCodeEditor } from '@vanduo-oss/vwl-cbun/code-editor';
+ *   import { VdCodeEditor } from '@wwl/wwl-cbun/code-editor';
  *   <VdCodeEditor v-model="code" language="javascript" @change="onChange" />
  *
  * The editor core stays framework-agnostic in ./core.js. SSR-safe: the editor is

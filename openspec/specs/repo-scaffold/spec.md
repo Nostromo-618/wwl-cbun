@@ -2,13 +2,13 @@
 
 ## Purpose
 Package metadata, multi-entry build, CI gates, version manifest, and
-Labs-sibling (`link:`) packaging for `@vanduo-oss/vwl-cbun`.
+Labs-sibling (`link:`) packaging for `@wwl/wwl-cbun`.
 
 ## Requirements
 
 ### Requirement: package identity and exports contract
 
-The package MUST be `@vanduo-oss/vwl-cbun`, version `1.0.0`, MIT-licensed, ESM
+The package MUST be `@wwl/wwl-cbun`, version `1.0.0`, MIT-licensed, ESM
 (`type: "module"`), with `vue >=3.3.0` declared as a REQUIRED peer dependency
 (no `peerDependenciesMeta` optionality). It MUST be a Labs sibling repo
 (`"private": true`) and MUST NOT declare `publishConfig` for public npm.
@@ -24,7 +24,7 @@ MUST NOT be exported from this package.
 #### Scenario: exports map declares the four-widget subpath contract
 
 - **GIVEN** the `package.json`
-- **WHEN** a consumer resolves `@vanduo-oss/vwl-cbun/draw`
+- **WHEN** a consumer resolves `@wwl/wwl-cbun/draw`
 - **THEN** the exports map routes `types` to `./dist/draw/index.d.ts`,
   `import` to `./dist/draw/index.js`, and `require` to
   `./dist/draw/index.cjs`, and the same shape holds for `./code-editor`,
@@ -33,8 +33,8 @@ MUST NOT be exported from this package.
 #### Scenario: code-editor subpaths resolve to built targets
 
 - **GIVEN** the `package.json` exports map
-- **WHEN** a consumer resolves `@vanduo-oss/vwl-cbun/code-editor` and
-  `@vanduo-oss/vwl-cbun/code-editor/css`
+- **WHEN** a consumer resolves `@wwl/wwl-cbun/code-editor` and
+  `@wwl/wwl-cbun/code-editor/css`
 - **THEN** the first routes `types`/`import`/`require` to
   `./dist/code-editor/index.d.ts|index.js|index.cjs` and the second resolves to
   `./dist/code-editor/vd3-code-editor.css`
@@ -42,7 +42,7 @@ MUST NOT be exported from this package.
 #### Scenario: vue is a required peer
 
 - **GIVEN** a consumer project without `vue` installed
-- **WHEN** the consumer installs `@vanduo-oss/vwl-cbun` with strict peer
+- **WHEN** the consumer installs `@wwl/wwl-cbun` with strict peer
   enforcement
 - **THEN** the package manager reports the missing `vue >=3.3.0` peer instead
   of silently proceeding
@@ -92,14 +92,14 @@ in `pnpm-workspace.yaml`.
 The repo MUST ship `component-versions.json` with keys `code-editor`, `draw`,
 `hex-grid`, and `music-player` only. Values MUST be `1.1.0`, `1.1.0`,
 `1.2.0`, and `1.0.1` respectively. The root entry `src/index.js` SHALL export
-a frozen `VWL_CBUN_VERSIONS` map whose values mirror that manifest exactly.
+a frozen `WWL_CBUN_VERSIONS` map whose values mirror that manifest exactly.
 An automated test MUST assert the sync.
 
 #### Scenario: version map matches the manifest
 
-- **GIVEN** `component-versions.json` and the exported `VWL_CBUN_VERSIONS`
+- **GIVEN** `component-versions.json` and the exported `WWL_CBUN_VERSIONS`
 - **WHEN** the smoke test runs
-- **THEN** the maps are deep-equal and `Object.isFrozen(VWL_CBUN_VERSIONS)` is
+- **THEN** the maps are deep-equal and `Object.isFrozen(WWL_CBUN_VERSIONS)` is
   true
 
 ### Requirement: no remote CI
@@ -167,14 +167,14 @@ code-editor, and music-player.
 The repo MUST ship `README.md`, `SKILL.md`, `CHANGELOG.md`, `CONTRIBUTING.md`,
 and the MIT `LICENSE`. Docs MUST describe sibling `link:` consumption (not
 npm install). `CHANGELOG.md` MUST carry a dated `## 1.0.0` entry. `SKILL.md`
-MUST carry Agent Skills frontmatter (`name: vanduo-vwl-cbun`).
+MUST carry Agent Skills frontmatter (`name: wwl-cbun`).
 
 #### Scenario: docs describe link: install
 
 - **GIVEN** `README.md` and `SKILL.md`
 - **WHEN** install instructions are read
-- **THEN** they show `link:../vwl-cbun` (or equivalent path) and do not
-  instruct `pnpm add @vanduo-oss/vwl-cbun` from the public registry
+- **THEN** they show `link:../wwl-cbun` (or equivalent path) and do not
+  instruct `pnpm add @wwl/wwl-cbun` from the public registry
 
 ### Requirement: no public npm publish
 

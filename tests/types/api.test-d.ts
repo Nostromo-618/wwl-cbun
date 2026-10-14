@@ -1,4 +1,4 @@
-// Type-level smoke test for the four vwl-cbun subpath type surfaces (+ highlight) — charts/flowchart live in dedicated packages. Run via
+// Type-level smoke test for the four wwl-cbun subpath type surfaces (+ highlight) — charts/flowchart live in dedicated packages. Run via
 // `pnpm test:types` (tsc --noEmit -p tests/types/tsconfig.json). Named
 // `.test-d.ts` so Playwright/vitest ignore it. Imports resolve the package's
 // own "exports" map (self-reference) → the built dist/<name>/*.d.ts, so this
@@ -7,7 +7,7 @@
 // constant), this file fails to compile and the gate goes red.
 
 /* ===========================================================================
- * hex-grid — @vanduo-oss/vwl-cbun/hex-grid  (+ ./hex-grid/hex-math)
+ * hex-grid — @wwl/wwl-cbun/hex-grid  (+ ./hex-grid/hex-math)
  * ======================================================================== */
 import {
   VdHexGridCore,
@@ -18,7 +18,7 @@ import {
   type HexRenderStats,
   type VdHexGridEventMap,
   type VdHexGridProps,
-} from '@vanduo-oss/vwl-cbun/hex-grid';
+} from '@wwl/wwl-cbun/hex-grid';
 import {
   rotatePoint,
   unrotatePoint,
@@ -39,7 +39,7 @@ import {
   type AxialCoord,
   type TerrainYield,
   type TerrainTypeValue,
-} from '@vanduo-oss/vwl-cbun/hex-grid/hex-math';
+} from '@wwl/wwl-cbun/hex-grid/hex-math';
 
 const gridOptions: VdHexGridOptions = {
   element: document.createElement('div'),
@@ -106,7 +106,7 @@ const hexProps: VdHexGridProps = {
 const badHexProps: VdHexGridProps = { size: 'big' };
 
 /* ===========================================================================
- * music-player — @vanduo-oss/vwl-cbun/music-player
+ * music-player — @wwl/wwl-cbun/music-player
  * ======================================================================== */
 import {
   MusicPlayer,
@@ -117,7 +117,7 @@ import {
   type MusicPlayerTrack,
   type MusicPlayerRepeatMode,
   type VdMusicPlayerProps,
-} from '@vanduo-oss/vwl-cbun/music-player';
+} from '@wwl/wwl-cbun/music-player';
 
 const container = document.createElement('div');
 const tracks: MusicPlayerTrack[] = [{ name: 'One', url: '/one.mp3' }];
@@ -157,7 +157,7 @@ const badMusicProps: VdMusicPlayerProps = { tracks: [{ name: 'a' }] };
 MusicPlayer.init(document.body);
 
 /* ===========================================================================
- * code-editor — @vanduo-oss/vwl-cbun/code-editor
+ * code-editor — @wwl/wwl-cbun/code-editor
  * ======================================================================== */
 import {
   VdCodeEditor,
@@ -175,7 +175,7 @@ import {
   type VdCodeEditorOptions,
   type CodeEditorChangeEvent,
   type VdCodeEditorProps,
-} from '@vanduo-oss/vwl-cbun/code-editor';
+} from '@wwl/wwl-cbun/code-editor';
 
 const editorHost = document.createElement('div');
 const editorOptions: VdCodeEditorOptions = {
@@ -219,7 +219,7 @@ const badEditorProps: VdCodeEditorProps = { modelValue: 123 };
 codeEditor.run('code');
 
 /* ===========================================================================
- * code-editor/highlight — @vanduo-oss/vwl-cbun/code-editor/highlight
+ * code-editor/highlight — @wwl/wwl-cbun/code-editor/highlight
  * ======================================================================== */
 import {
   highlight as snippetHighlight,
@@ -228,7 +228,7 @@ import {
   LANGUAGES as snippetLanguages,
   type Token as SnippetToken,
   type HighlightOptions as SnippetHighlightOptions,
-} from '@vanduo-oss/vwl-cbun/code-editor/highlight';
+} from '@wwl/wwl-cbun/code-editor/highlight';
 
 const snippetTokens: SnippetToken[] = snippetTokenize('const x = 1;', 'javascript');
 const snippetHtml: string = snippetHighlight('a\n', 'plaintext', {
@@ -292,7 +292,7 @@ void [
 ];
 
 /* ===========================================================================
- * draw — @vanduo-oss/vwl-cbun/draw
+ * draw — @wwl/wwl-cbun/draw
  * ======================================================================== */
 import {
   VdDraw,
@@ -308,7 +308,7 @@ import {
   type DrawDocument,
   type DrawChangeEvent,
   type VdDrawProps,
-} from '@vanduo-oss/vwl-cbun/draw';
+} from '@wwl/wwl-cbun/draw';
 
 const drawHost = document.createElement('div');
 const drawer = new VdDrawCore({

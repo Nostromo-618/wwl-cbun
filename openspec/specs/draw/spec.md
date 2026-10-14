@@ -12,8 +12,8 @@ The `./draw` subpath entry SHALL export `VdDraw` (the Vue 3 wrapper) as its prim
 
 #### Scenario: consumer imports wrapper and core from the subpath
 
-- **GIVEN** a Vue 3 project with `@vanduo-oss/vwl-cbun` installed
-- **WHEN** it executes `import { VdDraw, VdDrawCore, VD_DRAW_VERSION, DRAW_TOOLS, DRAW_SHAPE_TYPES, BRUSH_PRESETS } from '@vanduo-oss/vwl-cbun/draw'`
+- **GIVEN** a Vue 3 project with `@wwl/wwl-cbun` installed
+- **WHEN** it executes `import { VdDraw, VdDrawCore, VD_DRAW_VERSION, DRAW_TOOLS, DRAW_SHAPE_TYPES, BRUSH_PRESETS } from '@wwl/wwl-cbun/draw'`
 - **THEN** `VdDraw` is a mountable Vue component, `new VdDrawCore({ element })` constructs a working editor, `VD_DRAW_VERSION` is the string `'1.1.0'`, and `DRAW_TOOLS` / `DRAW_SHAPE_TYPES` / `BRUSH_PRESETS` are frozen enumerations — all named exports with no default
 
 ### Requirement: SVG infinite canvas with pan and zoom

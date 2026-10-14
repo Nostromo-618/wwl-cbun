@@ -10,8 +10,8 @@ The `./code-editor` subpath entry SHALL export `VdCodeEditor` (the Vue 3 wrapper
 
 #### Scenario: consumer imports wrapper and core from the subpath
 
-- **GIVEN** a Vue 3 project with `@vanduo-oss/vwl-cbun` installed
-- **WHEN** it executes `import { VdCodeEditor, VdCodeEditorCore, VD_CODE_EDITOR_VERSION, tokenize, highlight, LANGUAGES } from '@vanduo-oss/vwl-cbun/code-editor'`
+- **GIVEN** a Vue 3 project with `@wwl/wwl-cbun` installed
+- **WHEN** it executes `import { VdCodeEditor, VdCodeEditorCore, VD_CODE_EDITOR_VERSION, tokenize, highlight, LANGUAGES } from '@wwl/wwl-cbun/code-editor'`
 - **THEN** `VdCodeEditor` is a mountable Vue component, `new VdCodeEditorCore({ element })` constructs a working editor, and `tokenize`/`highlight`/`LANGUAGES` are the pure tokenizer helpers — all named exports with no default
 
 #### Scenario: core is framework-agnostic
@@ -120,7 +120,7 @@ depend on the string `highlight()` default.
 
 ### Requirement: tokenizer-only highlight subpath
 
-The package SHALL export `@vanduo-oss/vwl-cbun/code-editor/highlight` as a
+The package SHALL export `@wwl/wwl-cbun/code-editor/highlight` as a
 tokenizer-only entry that provides `highlight`, `tokenize`, `LANGUAGES`, and
 `renderTokensToHtml`. Evaluating that entry MUST NOT load `src/code-editor/core.js`
 or `src/code-editor/vue.js`. The existing `./code-editor` entry MUST keep
@@ -254,7 +254,7 @@ The component's stylesheet SHALL be exposed at `./code-editor/css` (built to `di
 #### Scenario: css subpath resolves to the built stylesheet
 
 - **GIVEN** a bundler honoring the `exports` map
-- **WHEN** a consumer imports `@vanduo-oss/vwl-cbun/code-editor/css`
+- **WHEN** a consumer imports `@wwl/wwl-cbun/code-editor/css`
 - **THEN** it resolves to `./dist/code-editor/vd3-code-editor.css`
 
 #### Scenario: colors follow the active theme tokens
@@ -266,11 +266,11 @@ The component's stylesheet SHALL be exposed at `./code-editor/css` (built to `di
 ### Requirement: version constant matches the manifest
 
 `VD_CODE_EDITOR_VERSION` SHALL be `'1.1.0'` and MUST equal both
-`component-versions.json['code-editor']` and `VWL_CBUN_VERSIONS['code-editor']`.
+`component-versions.json['code-editor']` and `WWL_CBUN_VERSIONS['code-editor']`.
 
 #### Scenario: the three version sites agree
 
-- **GIVEN** the manifest, the frozen root `VWL_CBUN_VERSIONS` map, and the
+- **GIVEN** the manifest, the frozen root `WWL_CBUN_VERSIONS` map, and the
   exported `VD_CODE_EDITOR_VERSION`
 - **WHEN** the smoke test compares them
 - **THEN** all three equal `'1.1.0'`, and the test fails on any drift

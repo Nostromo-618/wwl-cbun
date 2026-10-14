@@ -1,5 +1,5 @@
 // Hand-written declarations for the tokenizer-only
-// `@vanduo-oss/vwl-cbun/code-editor/highlight` entry. Types are shared with
+// `@wwl/wwl-cbun/code-editor/highlight` entry. Types are shared with
 // the editor core; this file MUST NOT pull in Vue wrapper types.
 
 export { tokenize, highlight, renderTokensToHtml, LANGUAGES } from './core';

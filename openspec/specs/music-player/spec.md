@@ -19,9 +19,9 @@ entry MUST use named exports only; the old `VanduoMusicPlayer` alias and
 
 #### Scenario: wrapper and core are importable from one subpath
 
-- **GIVEN** a Vue 3 project with `@vanduo-oss/vwl-cbun` installed
+- **GIVEN** a Vue 3 project with `@wwl/wwl-cbun` installed
 - **WHEN** it executes
-  `import { VdMusicPlayer, MusicPlayer } from '@vanduo-oss/vwl-cbun/music-player'`
+  `import { VdMusicPlayer, MusicPlayer } from '@wwl/wwl-cbun/music-player'`
 - **THEN** `VdMusicPlayer` is a mountable Vue component and
   `MusicPlayer.initPlayer(container, { tracks })` creates a working player on
   the given element
@@ -42,7 +42,7 @@ scan the DOM.
 
 - **GIVEN** a browser-like environment where `window.VanduoMusicPlayer` is
   undefined and the DOM contains a `.vd-music-player` element
-- **WHEN** `@vanduo-oss/vwl-cbun/music-player` is imported
+- **WHEN** `@wwl/wwl-cbun/music-player` is imported
 - **THEN** `window.VanduoMusicPlayer` is still undefined and the element has
   not been initialized as a player
 
@@ -84,7 +84,7 @@ The hand-written declarations SHALL move from the old repo's
 
 - **GIVEN** a TypeScript consumer with strict mode enabled
 - **WHEN** it imports `MusicPlayer`, `VdMusicPlayer`, and the option/state
-  types from `@vanduo-oss/vwl-cbun/music-player` and type-checks
+  types from `@wwl/wwl-cbun/music-player` and type-checks
   `initPlayer`/`getState` usage
 - **THEN** `tsc --noEmit` passes, and `init`/`reinit` are compile errors
 
@@ -110,7 +110,7 @@ the `./music-player/css` subpath export.
 #### Scenario: stylesheet resolves through the exports map
 
 - **GIVEN** a bundler that honors package `exports`
-- **WHEN** the consumer imports `@vanduo-oss/vwl-cbun/music-player/css`
+- **WHEN** the consumer imports `@wwl/wwl-cbun/music-player/css`
 - **THEN** it resolves to `dist/music-player/vd3-music-player.css`, whose
   rules match the old-line `music-player/src/styles.css`
 

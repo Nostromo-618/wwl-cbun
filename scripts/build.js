@@ -1,4 +1,4 @@
-// Multi-entry esbuild harness for @vanduo-oss/vwl-cbun.
+// Multi-entry esbuild harness for @wwl/wwl-cbun.
 //
 // The root "." entry exports the VERSION-constants map. Every component ships
 // an isolated subpath entry (esm + cjs), so importing one component never pulls
@@ -209,7 +209,7 @@ async function build() {
   const exportCount = assertExportsExist();
 
   console.log(
-    `Built @vanduo-oss/vwl-cbun: root + ${COMPONENTS.length} component entries; ` +
+    `Built @wwl/wwl-cbun: root + ${COMPONENTS.length} component entries; ` +
       `${exportCount} export targets verified on disk; isolation + vue-external checks passed.`,
   );
 }

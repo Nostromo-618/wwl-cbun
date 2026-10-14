@@ -1,4 +1,4 @@
-# Contributing to vwl-cbun
+# Contributing to wwl-cbun
 
 ## Setup
 
@@ -33,7 +33,7 @@ Active changes live in `openspec/changes/`. Archive with
 ## Release
 
 Bump `package.json` and the relevant widget VERSION constants /
-`component-versions.json` / `VWL_CBUN_VERSIONS` together. `pnpm release`
+`component-versions.json` / `WWL_CBUN_VERSIONS` together. `pnpm release`
 builds then publishes; do not publish from a docs-only or incomplete
 branch. The hardened `.npmrc` `ignore-scripts=true` skips `prepack`, so
 the explicit `release` script is required.

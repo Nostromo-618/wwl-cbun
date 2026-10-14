@@ -1,14 +1,14 @@
 ---
-name: vanduo-vwl-cbun
-description: Use when adding Vanduo Web Labs widgets with @vanduo-oss/vwl-cbun — Vue 3 miscellaneous bundle (code-editor, draw, hex-grid, music-player) with tree-shakeable subpath exports. Covers install, per-subpath imports, CSS, theming, and per-component versioning.
+name: wwl-cbun
+description: Use when adding Weekend Web Labs widgets with @wwl/wwl-cbun — Vue 3 miscellaneous bundle (code-editor, draw, hex-grid, music-player) with tree-shakeable subpath exports. Covers install, per-subpath imports, CSS, theming, and per-component versioning.
 ---
 
-# @vanduo-oss/vwl-cbun
+# @wwl/wwl-cbun
 
 One bundle, four Vue 3 widgets, each on its own tree-shakeable subpath
 (`./code-editor`, `./draw`, `./hex-grid`, `./music-player`).
 `vue >=3.3.0` is a required peer. The root import exposes only
-`VWL_CBUN_VERSIONS` — the per-component VERSION map. Every subpath re-exports
+`WWL_CBUN_VERSIONS` — the per-component VERSION map. Every subpath re-exports
 the Vue wrapper AND the framework-agnostic core alongside it (the core
 aliased with a `Core` suffix where the names collide). Charts and flowchart
 are **not** in this package — use `@vanduo-oss/vd3-charts` /
@@ -19,7 +19,7 @@ are **not** in this package — use `@vanduo-oss/vd3-charts` /
 Not on npm. Clone beside Labs (or any host), build, then depend with `link:`:
 
 ```json
-"@vanduo-oss/vwl-cbun": "link:../vwl-cbun"
+"@wwl/wwl-cbun": "link:../wwl-cbun"
 ```
 
 Import each component from its own subpath; nothing registers globally. For
@@ -28,19 +28,19 @@ correct theming, provide the Vanduo `--vd-*` design tokens.
 ## Code editor
 
 ```js
-import { VdCodeEditor, VdCodeEditorCore } from '@vanduo-oss/vwl-cbun/code-editor';
-import { highlight, tokenize, LANGUAGES } from '@vanduo-oss/vwl-cbun/code-editor/highlight';
-import '@vanduo-oss/vwl-cbun/code-editor/css';
+import { VdCodeEditor, VdCodeEditorCore } from '@wwl/wwl-cbun/code-editor';
+import { highlight, tokenize, LANGUAGES } from '@wwl/wwl-cbun/code-editor/highlight';
+import '@wwl/wwl-cbun/code-editor/css';
 ```
 
 `./code-editor/highlight` is tokenizer-only (no editor / Vue). CSS at
-`@vanduo-oss/vwl-cbun/code-editor/css`. `VD_CODE_EDITOR_VERSION` is `1.1.0`.
+`@wwl/wwl-cbun/code-editor/css`. `VD_CODE_EDITOR_VERSION` is `1.1.0`.
 
 ## Draw
 
 ```js
-import { VdDraw, VdDrawCore } from '@vanduo-oss/vwl-cbun/draw';
-import '@vanduo-oss/vwl-cbun/draw/css';
+import { VdDraw, VdDrawCore } from '@wwl/wwl-cbun/draw';
+import '@wwl/wwl-cbun/draw/css';
 ```
 
 `VD_DRAW_VERSION` is `1.1.0`.
@@ -48,8 +48,8 @@ import '@vanduo-oss/vwl-cbun/draw/css';
 ## Hex grid
 
 ```js
-import { VdHexGrid, VdHexGridCore } from '@vanduo-oss/vwl-cbun/hex-grid';
-import { hexToPixel, TerrainType } from '@vanduo-oss/vwl-cbun/hex-grid/hex-math';
+import { VdHexGrid, VdHexGridCore } from '@wwl/wwl-cbun/hex-grid';
+import { hexToPixel, TerrainType } from '@wwl/wwl-cbun/hex-grid/hex-math';
 ```
 
 No CSS subpath — canvas themed via `--vd-*` tokens. `VD_HEX_VERSION` is `1.2.0`.
@@ -60,8 +60,8 @@ zooms about an anchor and `zoomIn()`/`zoomOut()` are centre-anchored.
 ## Music player
 
 ```js
-import { VdMusicPlayer, MusicPlayer } from '@vanduo-oss/vwl-cbun/music-player';
-import '@vanduo-oss/vwl-cbun/music-player/css';
+import { VdMusicPlayer, MusicPlayer } from '@wwl/wwl-cbun/music-player';
+import '@wwl/wwl-cbun/music-player/css';
 ```
 
 `VD_MUSIC_PLAYER_VERSION` is `1.0.1`.
@@ -69,7 +69,7 @@ import '@vanduo-oss/vwl-cbun/music-player/css';
 ## Version map
 
 ```js
-import { VWL_CBUN_VERSIONS } from '@vanduo-oss/vwl-cbun';
+import { WWL_CBUN_VERSIONS } from '@wwl/wwl-cbun';
 ```
 
 ## Theming

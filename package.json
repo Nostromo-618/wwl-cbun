@@ -1,18 +1,18 @@
 {
-  "name": "@vanduo-oss/vwl-cbun",
+  "name": "@wwl/wwl-cbun",
   "version": "1.0.0",
   "private": true,
-  "description": "Vanduo Web Labs miscellaneous Vue 3 component bundle \u2014 code-editor, draw, hex-grid, music-player",
+  "description": "Weekend Web Labs miscellaneous Vue 3 component bundle \u2014 code-editor, draw, hex-grid, music-player",
   "type": "module",
   "license": "MIT",
   "author": "nostromo-618",
-  "homepage": "https://github.com/nostromo-618/vwl-cbun#readme",
+  "homepage": "https://github.com/nostromo-618/wwl-cbun#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nostromo-618/vwl-cbun.git"
+    "url": "git+https://github.com/nostromo-618/wwl-cbun.git"
   },
   "bugs": {
-    "url": "https://github.com/nostromo-618/vwl-cbun/issues"
+    "url": "https://github.com/nostromo-618/wwl-cbun/issues"
   },
   "sideEffects": [
     "**/*.css"
@@ -65,7 +65,7 @@
     "LICENSE"
   ],
   "keywords": [
-    "vanduo",
+    "wwl",
     "labs",
     "vue",
     "components",

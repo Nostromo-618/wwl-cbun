@@ -1,4 +1,4 @@
-// Entry for @vanduo-oss/vwl-cbun/draw.
+// Entry for @wwl/wwl-cbun/draw.
 //
 // The Vue 3 wrapper is the primary export; the framework-agnostic editor core
 // is re-exported alongside as VdDrawCore. Named exports only — no default.

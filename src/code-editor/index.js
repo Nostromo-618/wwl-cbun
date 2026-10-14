@@ -1,4 +1,4 @@
-// Entry for @vanduo-oss/vwl-cbun/code-editor.
+// Entry for @wwl/wwl-cbun/code-editor.
 //
 // The Vue 3 wrapper is the primary export; the framework-agnostic editor core is
 // re-exported alongside as VdCodeEditorCore, together with the version constant

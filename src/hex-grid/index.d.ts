@@ -1,6 +1,6 @@
-// Hand-written entry declarations for @vanduo-oss/vwl-cbun/hex-grid.
+// Hand-written entry declarations for @wwl/wwl-cbun/hex-grid.
 // Keep in sync with src/hex-grid/index.js. The pure hex-math module is a
-// separate subpath: @vanduo-oss/vwl-cbun/hex-grid/hex-math.
+// separate subpath: @wwl/wwl-cbun/hex-grid/hex-math.
 
 export { VdHexGrid } from './vue.js';
 export type { VdHexGridProps, VdHexGridEmits } from './vue.js';

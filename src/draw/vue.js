@@ -1,7 +1,7 @@
 /**
  * Vue 3 bindings for the draw whiteboard — the primary export surface.
  *
- *   import { VdDraw } from '@vanduo-oss/vwl-cbun/draw';
+ *   import { VdDraw } from '@wwl/wwl-cbun/draw';
  *   <VdDraw :data="doc" tool="rectangle" @change="onChange" @ready="onReady" />
  *
  * The editor core stays framework-agnostic in ./core.js. SSR-safe: the editor

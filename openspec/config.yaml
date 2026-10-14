@@ -1,11 +1,11 @@
 schema: spec-driven
 
 context: |
-  Package: @vanduo-oss/vwl-cbun (MIT, vanduo-oss org). Vanduo Web Labs miscellaneous
+  Package: @wwl/wwl-cbun (MIT, vanduo-oss org). Weekend Web Labs miscellaneous
   Vue 3 component bundle: code-editor, draw, hex-grid, music-player — one package
   with tree-shakeable subpath exports (./code-editor, ./code-editor/highlight,
   ./code-editor/css, ./draw, ./draw/css, ./hex-grid, ./hex-grid/hex-math,
-  ./music-player, ./music-player/css). Root "." exposes only VWL_CBUN_VERSIONS.
+  ./music-player, ./music-player/css). Root "." exposes only WWL_CBUN_VERSIONS.
   Charts and flowchart live in @vanduo-oss/vd3-charts / @vanduo-oss/vd3-flowchart.
   APIs stay Vd* with --vd-* tokens and vd3-*.css filenames from the vd3-cbun extract.
   Stack: plain JS cores + thin Vue defineComponent wrappers, hand-written .d.ts,
@@ -30,4 +30,4 @@ rules:
     - Include pnpm build and pnpm test when code changes
     - Include esbuild metafile tree-shake verification when exports/build change
   changelog:
-    - Track @vanduo-oss/vwl-cbun only; never docs-site content
+    - Track @wwl/wwl-cbun only; never docs-site content

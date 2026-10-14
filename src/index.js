@@ -1,4 +1,4 @@
-// Root entry of @vanduo-oss/vwl-cbun.
+// Root entry of @wwl/wwl-cbun.
 //
 // Exposes ONLY the per-component VERSION-constants map. Component APIs live on
 // the subpath exports (./code-editor, ./code-editor/highlight, ./draw,
@@ -12,7 +12,7 @@
 // code-editor 1.1.0, music-player 1.0.1) — extracted 1-to-1 from
 // @vanduo-oss/vd3-cbun@1.4.2.
 
-export const VWL_CBUN_VERSIONS = Object.freeze({
+export const WWL_CBUN_VERSIONS = Object.freeze({
   'code-editor': '1.1.0',
   draw: '1.1.0',
   'hex-grid': '1.2.0',

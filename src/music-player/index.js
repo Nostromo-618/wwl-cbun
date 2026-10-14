@@ -1,4 +1,4 @@
-// Subpath entry for @vanduo-oss/vwl-cbun/music-player.
+// Subpath entry for @wwl/wwl-cbun/music-player.
 //
 // Vue 3 wrapper is the primary export; the framework-agnostic core namespace
 // rides alongside. Named exports only — no default, no window globals.

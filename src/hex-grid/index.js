@@ -1,4 +1,4 @@
-// Entry for @vanduo-oss/vwl-cbun/hex-grid.
+// Entry for @wwl/wwl-cbun/hex-grid.
 //
 // The Vue wrapper VdHexGrid is the primary surface; the framework-agnostic
 // canvas core class (same name upstream) is re-exported as VdHexGridCore.

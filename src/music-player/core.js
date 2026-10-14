@@ -16,7 +16,7 @@ function normalizeCornerPosition(position) {
 }
 
 /**
- * Vanduo Framework - Music Player Component
+ * Weekend Web Labs - Music Player Component
  * HTML5 Audio-based music player with transport controls, volume,
  * and optional shuffle, repeat modes, seek bar, and playlist features.
  *
@@ -1206,7 +1206,7 @@ const MusicPlayer = {
   },
 
   /**
-   * Free-form pointer drag on the handle. Vanduo's `draggable` component uses HTML5
+   * Free-form pointer drag on the handle. WWL's `draggable` component uses HTML5
    * drag/drop for list reordering; floating players use pointer events on the handle instead.
    * @param {Object} inst
    */

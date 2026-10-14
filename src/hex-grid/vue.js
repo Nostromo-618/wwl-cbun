@@ -1,7 +1,7 @@
 /**
- * Vue 3 bindings for the hex-grid component of @vanduo-oss/vwl-cbun.
+ * Vue 3 bindings for the hex-grid component of @wwl/wwl-cbun.
  *
- *   import { VdHexGrid } from '@vanduo-oss/vwl-cbun/hex-grid';
+ *   import { VdHexGrid } from '@wwl/wwl-cbun/hex-grid';
  *   <VdHexGrid :size="30" :width="15" :height="10" @select="onSelect" />
  *
  * The canvas core stays framework-agnostic. SSR-safe: the canvas grid

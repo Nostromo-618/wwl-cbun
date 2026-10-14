@@ -21,9 +21,9 @@ defaults.
 
 #### Scenario: wrapper and core are importable from one subpath
 
-- **GIVEN** a Vue 3 project with `@vanduo-oss/vwl-cbun` installed
+- **GIVEN** a Vue 3 project with `@wwl/wwl-cbun` installed
 - **WHEN** it executes
-  `import { VdHexGrid, VdHexGridCore } from '@vanduo-oss/vwl-cbun/hex-grid'`
+  `import { VdHexGrid, VdHexGridCore } from '@wwl/wwl-cbun/hex-grid'`
 - **THEN** `VdHexGrid` is a mountable Vue component and `VdHexGridCore` is
   the canvas grid class constructible against a DOM element
 
@@ -50,7 +50,7 @@ and `window` access so it is importable in any JavaScript runtime.
 - **GIVEN** a plain Node process
 - **WHEN** `hexToPixel(2, 3, 30)` and
   `pixelToHex(result.x, result.y, 30)` are called from
-  `@vanduo-oss/vwl-cbun/hex-grid/hex-math`
+  `@wwl/wwl-cbun/hex-grid/hex-math`
 - **THEN** the round trip returns `{ q: 2, r: 3 }` with no DOM or window
   access
 
