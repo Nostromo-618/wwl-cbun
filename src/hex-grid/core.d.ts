@@ -152,10 +152,10 @@ export declare class VdHexGrid {
    */
   destroy(): void;
 
-  /** Set hex size (regenerates the grid). */
+  /** Set hex size (regenerates geometry; keeps fill, stroke, terrain, and data). */
   setSize(size: number): void;
 
-  /** Set grid dimensions (regenerates the grid). */
+  /** Set grid dimensions (regenerates geometry; keeps fill, stroke, terrain, and data). */
   setDimensions(width: number, height: number): void;
 
   /** Reset grid to defaults (size 30, 15x10, no rotation, identity view). */
@@ -253,7 +253,7 @@ export declare class VdHexGrid {
   /** Get a path between two hexes (simple BFS); empty array when unreachable. */
   getPath(startQ: number, startR: number, endQ: number, endR: number): AxialCoord[];
 
-  /** Set grid rotation in radians (regenerates the grid). */
+  /** Set grid rotation in radians (regenerates geometry; keeps fill, stroke, terrain, and data). */
   setRotation(rotation: number): void;
 
   /** Get current grid rotation in radians. */

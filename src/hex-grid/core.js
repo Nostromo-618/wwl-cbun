@@ -177,15 +177,23 @@ export class VdHexGrid {
    */
   _observeThemeChanges() {
     const reTheme = () => {
+      const previous = this.themeColors;
       this.themeColors = this._getThemeColors();
+      // Cells still wearing the previous theme defaults follow the new tokens.
+      // Explicit paints (wireframe transparent, terrain, path) are left alone.
+      this.hexes.forEach((hex) => {
+        if (hex.fill === previous.bgSecondary) hex.fill = this.themeColors.bgSecondary;
+        if (hex.stroke === previous.borderColor) hex.stroke = this.themeColors.borderColor;
+      });
       this._render();
     };
 
-    // Re-render when the document theme attribute flips (e.g. data-theme).
+    // Re-render when the labs theme control flips scheme or accent
+    // (data-theme / data-primary). Same attributes vd3 already writes.
     this._themeObserver = new MutationObserver(reTheme);
     this._themeObserver.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['data-theme'],
+      attributeFilter: ['data-theme', 'data-primary'],
     });
 
     // Also follow OS-level light/dark changes that flip token values through a
@@ -460,9 +468,13 @@ export class VdHexGrid {
   }
 
   /**
-   * Generate hex grid data
+   * Generate hex grid data.
+   * Geometry rebuilds (size, dimensions, rotation) keep each existing cell's
+   * fill, stroke, terrain, and data. Only `reset()` starts from theme defaults.
+   * @param {boolean} [preserveStyle=false]
    */
-  _generateGrid() {
+  _generateGrid(preserveStyle = false) {
+    const previous = preserveStyle ? new Map(this.hexes) : null;
     this.hexes.clear();
     this._bucketSize = Math.max(this.size * 2, MIN_BUCKET_SIZE);
     this._index = new Map();
@@ -471,17 +483,18 @@ export class VdHexGrid {
       const qOffset = Math.floor(r / 2);
       for (let q = -qOffset; q < this.width - qOffset; q++) {
         const pixel = hexToPixel(q, r, this.size, this.rotation);
+        const prev = previous ? previous.get(`${q},${r}`) : undefined;
 
         const hex = {
           q,
           r,
           x: pixel.x,
           y: pixel.y,
-          fill: this.themeColors.bgSecondary,
-          stroke: this.themeColors.borderColor,
+          fill: prev ? prev.fill : this.themeColors.bgSecondary,
+          stroke: prev ? prev.stroke : this.themeColors.borderColor,
           adjacent: getAdjacentHexes(q, r),
-          terrain: null,
-          data: {},
+          terrain: prev ? prev.terrain : null,
+          data: prev ? prev.data : {},
         };
         this.hexes.set(`${q},${r}`, hex);
 
@@ -810,7 +823,7 @@ export class VdHexGrid {
    */
   setSize(size) {
     this.size = size;
-    this._generateGrid();
+    this._generateGrid(true);
     this._resyncSelectedHex();
     this._render();
   }
@@ -821,7 +834,7 @@ export class VdHexGrid {
   setDimensions(width, height) {
     this.width = width;
     this.height = height;
-    this._generateGrid();
+    this._generateGrid(true);
     this._resyncSelectedHex();
     this._render();
   }
@@ -1231,7 +1244,7 @@ export class VdHexGrid {
    */
   setRotation(rotation) {
     this.rotation = rotation;
-    this._generateGrid();
+    this._generateGrid(true);
     this._resyncSelectedHex();
     this._render();
   }
