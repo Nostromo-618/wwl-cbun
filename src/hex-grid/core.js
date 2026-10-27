@@ -42,6 +42,31 @@ const now = () =>
     ? performance.now()
     : Date.now();
 
+class HexCellNode {
+  constructor(q, r, x, y, fill, stroke, terrain, data) {
+    this.q = q;
+    this.r = r;
+    this.x = x;
+    this.y = y;
+    this.fill = fill;
+    this.stroke = stroke;
+    this.terrain = terrain;
+    this.data = data;
+    this._adjacent = null;
+  }
+
+  get adjacent() {
+    if (!this._adjacent) {
+      this._adjacent = getAdjacentHexes(this.q, this.r);
+    }
+    return this._adjacent;
+  }
+
+  set adjacent(value) {
+    this._adjacent = value;
+  }
+}
+
 /**
  * VdHexGrid - A dynamic controllable hex grid component
  *
@@ -474,37 +499,46 @@ export class VdHexGrid {
    * @param {boolean} [preserveStyle=false]
    */
   _generateGrid(preserveStyle = false) {
-    const previous = preserveStyle ? new Map(this.hexes) : null;
+    const previous = preserveStyle && this.hexes.size > 0 ? new Map(this.hexes) : null;
     this.hexes.clear();
-    this._bucketSize = Math.max(this.size * 2, MIN_BUCKET_SIZE);
+    const bs = Math.max(this.size * 2, MIN_BUCKET_SIZE);
+    this._bucketSize = bs;
     this._index = new Map();
+
+    const qVec = hexToPixel(1, 0, this.size, this.rotation);
+    const rVec = hexToPixel(0, 1, this.size, this.rotation);
+    const defaultFill = this.themeColors.bgSecondary;
+    const defaultStroke = this.themeColors.borderColor;
 
     for (let r = 0; r < this.height; r++) {
       const qOffset = Math.floor(r / 2);
+      const rx = r * rVec.x;
+      const ry = r * rVec.y;
       for (let q = -qOffset; q < this.width - qOffset; q++) {
-        const pixel = hexToPixel(q, r, this.size, this.rotation);
-        const prev = previous ? previous.get(`${q},${r}`) : undefined;
+        const px = q * qVec.x + rx;
+        const py = q * qVec.y + ry;
+        const key = `${q},${r}`;
+        const prev = previous ? previous.get(key) : undefined;
 
-        const hex = {
+        const hex = new HexCellNode(
           q,
           r,
-          x: pixel.x,
-          y: pixel.y,
-          fill: prev ? prev.fill : this.themeColors.bgSecondary,
-          stroke: prev ? prev.stroke : this.themeColors.borderColor,
-          adjacent: getAdjacentHexes(q, r),
-          terrain: prev ? prev.terrain : null,
-          data: prev ? prev.data : {},
-        };
-        this.hexes.set(`${q},${r}`, hex);
+          px,
+          py,
+          prev ? prev.fill : defaultFill,
+          prev ? prev.stroke : defaultStroke,
+          prev ? prev.terrain : null,
+          prev ? prev.data : {},
+        );
+        this.hexes.set(key, hex);
 
-        const bx = Math.floor(hex.x / this._bucketSize);
-        const by = Math.floor(hex.y / this._bucketSize);
-        const key = `${bx},${by}`;
-        let bucket = this._index.get(key);
+        const bx = Math.floor(px / bs);
+        const by = Math.floor(py / bs);
+        const bKey = `${bx},${by}`;
+        let bucket = this._index.get(bKey);
         if (!bucket) {
           bucket = [];
-          this._index.set(key, bucket);
+          this._index.set(bKey, bucket);
         }
         bucket.push(hex);
       }
@@ -555,12 +589,14 @@ export class VdHexGrid {
         ? precomputedVisible || this._computeVisibleHexes()
         : null;
 
+    const unitCorners = getHexCorners(0, 0, this.size, this.rotation);
+    const hasCustom = !!this.customRenderCallback;
     let drawn = 0;
     const drawHex = (hex) => {
-      this._drawHex(hex);
+      this._drawHex(hex, false, unitCorners);
       drawn += 1;
       // Call custom render callback if set
-      if (this.customRenderCallback) {
+      if (hasCustom) {
         this.customRenderCallback(this.ctx, hex, this.size);
       }
     };
@@ -573,7 +609,7 @@ export class VdHexGrid {
 
     // Redraw selected hex if any (always, even when culled off-screen)
     if (this.selectedHex) {
-      this._drawHex(this.selectedHex, true);
+      this._drawHex(this.selectedHex, true, unitCorners);
     }
 
     this.ctx.restore();
@@ -593,14 +629,23 @@ export class VdHexGrid {
   /**
    * Draw a single hex
    */
-  _drawHex(hex, isSelected = false) {
-    const corners = getHexCorners(hex.x, hex.y, this.size, this.rotation);
+  _drawHex(hex, isSelected = false, unitCorners = getHexCorners(0, 0, this.size, this.rotation)) {
+    const cx = hex.x;
+    const cy = hex.y;
+    const c0 = unitCorners[0];
+    const c1 = unitCorners[1];
+    const c2 = unitCorners[2];
+    const c3 = unitCorners[3];
+    const c4 = unitCorners[4];
+    const c5 = unitCorners[5];
 
     this.ctx.beginPath();
-    this.ctx.moveTo(corners[0].x, corners[0].y);
-    for (let i = 1; i < corners.length; i++) {
-      this.ctx.lineTo(corners[i].x, corners[i].y);
-    }
+    this.ctx.moveTo(cx + c0.x, cy + c0.y);
+    this.ctx.lineTo(cx + c1.x, cy + c1.y);
+    this.ctx.lineTo(cx + c2.x, cy + c2.y);
+    this.ctx.lineTo(cx + c3.x, cy + c3.y);
+    this.ctx.lineTo(cx + c4.x, cy + c4.y);
+    this.ctx.lineTo(cx + c5.x, cy + c5.y);
     this.ctx.closePath();
 
     // Determine fill color: terrain > custom fill > theme
@@ -631,7 +676,7 @@ export class VdHexGrid {
       this.ctx.font = '10px monospace';
       this.ctx.textAlign = 'center';
       this.ctx.textBaseline = 'middle';
-      this.ctx.fillText(`${hex.q},${hex.r}`, hex.x, hex.y);
+      this.ctx.fillText(`${hex.q},${hex.r}`, cx, cy);
     }
   }
 
@@ -830,13 +875,18 @@ export class VdHexGrid {
 
   /**
    * Set grid dimensions
+   * @param {number} width
+   * @param {number} height
+   * @param {{preserveStyle?: boolean, render?: boolean}} [options]
    */
-  setDimensions(width, height) {
+  setDimensions(width, height, { preserveStyle = true, render = true } = {}) {
     this.width = width;
     this.height = height;
-    this._generateGrid(true);
+    this._generateGrid(preserveStyle);
     this._resyncSelectedHex();
-    this._render();
+    if (render) {
+      this._render();
+    }
   }
 
   /**

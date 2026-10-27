@@ -156,7 +156,11 @@ export declare class VdHexGrid {
   setSize(size: number): void;
 
   /** Set grid dimensions (regenerates geometry; keeps fill, stroke, terrain, and data). */
-  setDimensions(width: number, height: number): void;
+  setDimensions(
+    width: number,
+    height: number,
+    options?: { preserveStyle?: boolean; render?: boolean },
+  ): void;
 
   /** Reset grid to defaults (size 30, 15x10, no rotation, identity view). */
   reset(): void;
